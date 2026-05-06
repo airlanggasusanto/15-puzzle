@@ -59,5 +59,6 @@ Assets:
 
 ## Release
 
-v1.0.1 — Initial public release  
+Latest version: v1.0.1
+
 Download: https://github.com/airlanggasusanto/15-puzzle/releases/tag/v1.0.1
