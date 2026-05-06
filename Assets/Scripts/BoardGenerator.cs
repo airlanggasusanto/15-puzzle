@@ -122,10 +122,9 @@ public class BoardGenerator : MonoBehaviour
 
     void OnApplicationFocus(bool hasFocus)
     {
-        // if hasFocus is false, it means the user clicked away or alt-tabbed
-        if (!hasFocus && !isGameOver && !isGenerating && !pauseMenu)
+        if (!hasFocus && !isGameOver && !isGenerating)
         {
-            showPauseMenu();
+            pausefromFocus();
         }
 
         if (hasFocus)
@@ -144,7 +143,6 @@ public class BoardGenerator : MonoBehaviour
 
         int emptyIndex = -1;
 
-        // 1. Find the current empty slot
         for (int i = 0; i < slots.Count; i++)
         {
             if (slots[i].childCount == 0) { emptyIndex = i; break; }
@@ -152,7 +150,6 @@ public class BoardGenerator : MonoBehaviour
 
         if (emptyIndex == -1) return;
 
-        // 2. Calculate the index of the tile that should move
         int x = emptyIndex % 4;
         int y = emptyIndex / 4;
         int targetIndex = -1;
@@ -165,7 +162,6 @@ public class BoardGenerator : MonoBehaviour
             case NavigationMoveEvent.Direction.Right: if (x > 0) targetIndex = emptyIndex - 1; break;
         }
 
-        // 3. If a valid neighbor is found, "click" it
         if (targetIndex != -1 && targetIndex < slots.Count)
         {
             Button tileToMove = slots[targetIndex].Q<Button>();
@@ -175,8 +171,14 @@ public class BoardGenerator : MonoBehaviour
             }
         }
         
-        // Prevent the UI from trying to move focus to other random buttons
         evt.StopPropagation();
+    }
+
+    void pausefromFocus(){
+        if(pauseMenu) return;
+        pauseModal.style.display = DisplayStyle.Flex;
+        pauseMenu = true;
+        pauseTheGame();
     }
 
     void showPauseMenu(){
