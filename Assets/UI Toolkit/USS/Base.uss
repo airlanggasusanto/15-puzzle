@@ -1,0 +1,443 @@
+* {
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+}
+
+#MainContainer {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-color);
+}
+
+.game-square {
+    height: 100%;
+    aspect-ratio: 1;
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+}
+
+.pro-Label {
+    -unity-text-generator: advanced;
+    -unity-text-auto-size: best-fit 1px 1000px;
+}
+
+#TopBar {
+    height: 10%;
+    width: 80%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+}
+
+#ButtonBar {
+    height: 100%;
+    width: 30%;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+    margin-left: 1.5%;
+    font-size: 39px;
+}
+
+#NewGameButton {
+    width:100%;
+}
+
+/* 1. THE BASE STYLE (Default state) */
+.custom-button {
+    background-color: rgb(61, 42, 99);
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+
+    transition-property: background-color, scale, opacity;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+/* 2. THE HOVER STATE (Controlled by C# OnPointerEnter) */
+.custom-button--hover {
+    scale: 1.1;
+    background-color: var(--button-hover-color);
+}
+
+/* 3. THE ACTIVE STATE (Controlled by C# OnPointerDown) */
+.custom-button--active {
+    scale: 0.96;
+}
+
+.custom-button > * {
+    transition-property: opacity, scale;
+    transition-duration: 0.15s;
+}
+
+.custom-button > Label,
+.custom-button > .unity-label {
+    color: rgba(255,255,255,0.5);
+    -unity-text-align: middle-center;
+}
+
+.custom-button--hover > Label, 
+.custom-button--active > Label,
+.custom-button--hover > .unity-label,
+.custom-button--active > .unity-label {
+    color: rgba(255,255,255,1);
+    -unity-font-style: bold;
+}
+
+.custom-button--hover > .icon-wrapper {
+    scale: 1.1;
+}
+
+.custom-button--active > .icon-wrapper {
+    scale: 0.8;
+}
+
+.custom-button > .icon-wrapper > Image {
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.5);
+}
+
+.custom-button--hover > .icon-wrapper > Image {
+    -unity-background-image-tint-color: rgba(255, 255, 255, 1);
+}
+
+.custom-button--active > Label,
+.custom-button--active > .unity-label {
+    scale: 0.9;
+}
+
+#SettingsButton {
+    min-width: 0;
+    min-height: 0;
+    background-color: rgb(61, 42, 99);
+    color: black;
+    -unity-font-style: bold;
+    width: 30%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10%;
+    -unity-text-generator: advanced;
+    -unity-text-auto-size: best-fit 1px 1000px;
+    border-radius: 14px;
+}
+
+#ScoreBar {
+    flex-direction: column;
+    height: 100%;
+    width: 40%;
+    flex-shrink: 0;
+    margin-right: 1.5%;
+    background-color: rgb(61, 42, 99);
+    border-radius: 14px;
+    color: white;
+}
+
+#Title,
+#Value {
+    flex-grow: 1;
+    flex-direction: row;
+    padding: 0 25px 0 0;
+}
+
+#Title #Times, #Title #Moves{
+    -unity-font-definition: url("/Assets/Fonts/ClearSans-Regular-webfont SDF.asset");
+    justify-content: flex-end;
+    align-items: flex-end; 
+    -unity-text-align: lower-right;
+    width: 50%;
+    font-size: 21px;
+    -unity-font-style: normal;
+}
+
+#Value #Times, #Value #Moves{
+    justify-content: flex-end;
+    align-items: flex-start;
+    -unity-text-align: middle-right;
+    -unity-text-align: upper-right;
+    width: 50%;
+    font-size: 37px;
+    -unity-font-style: bold;
+}
+
+#Grid {
+    height: 80%;
+    width: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    aspect-ratio: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.slot {
+    width: 22%;
+    height: 22%;
+    background-color: var(--grid-tile-color);
+    margin: 1.5%;
+    border-radius: 10%;
+}
+
+.ball-1,
+.ball-2 {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.2;
+}
+
+.correct-position .ball-1,
+.correct-position .ball-2 {
+    background-color: rgb(205, 88, 58);
+}
+
+.wrong-position .ball-1,
+.wrong-position .ball-2 {
+    background-color: rgb(73, 149, 145);
+}
+
+.ball-1 {
+    width: 28%;
+    height: 28%;
+    top: 21%;
+    left: 19%;
+}
+
+.ball-2 {
+    width: 56%;
+    height: 56%;
+    bottom: 8%;
+    right: 10%;
+}
+
+.tile {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border-width: 0;
+    border-radius: 10%;
+}
+
+.tile.correct-position {
+    background-color: rgb(232, 138, 69);
+}
+
+.tile.wrong-position {
+    background-color: rgb(106, 198, 184);
+}
+
+.correct-position .tile-shadow {
+    color: rgb(205, 88, 58);
+}
+
+.wrong-position .tile-shadow {
+    color: rgb(73, 149, 145);
+}
+
+.tile Label {
+    position: absolute;
+    -unity-font-definition: url("/Assets/Fonts/Pacifico-Regular SDFgg.asset");
+    height: 100%;
+    width: 100%;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    -unity-text-generator: advanced;
+    -unity-text-auto-size: best-fit 1px 1000px;
+}
+
+.tile-text {
+    scale: 1.3 1.3;
+    color: white;
+    translate: 0px -10%;
+}
+
+.tile-shadow {
+    scale: 1.56 1.56;
+    color: rgb(73, 149, 145);
+    translate: 1.5px -10%;
+    opacity: 0.5;
+}
+
+.tile.unity-button {
+    border-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    background-color: var(--overlay-background-color);
+
+    display: none;
+}
+
+.modal-content {
+    background-color: var(--modal-background-color);
+    padding: 27px;
+    border-radius: 17px;
+    border-width: 3px;
+    border-color: rgba(0, 0, 0, 0.4);
+    min-width: 568px;
+    height: 355px;
+    align-items: center;
+}
+
+.modal-title {
+    -unity-font-definition: url("/Assets/Fonts/Pacifico-Regular SDFgg.asset");
+    font-size: 66px;
+    -unity-font-style: bold;
+    color: var(--modal-text-color);
+    margin-bottom: 20px;
+}
+
+.modal-stats-group {
+    flex-direction: row;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    -unity-font-definition: url("/Assets/Fonts/ClearSans-Regular-webfont SDF.asset");
+    font-size: 28px;
+    -unity-font-style: normal;
+}
+
+.modal-stats-group Label {
+    color: var(--modal-text-color);
+}
+
+.modal-stats-group #moveslabel {
+    margin-left: 14px;
+    -unity-font-style: bold;
+}
+
+.button-wrapper{
+    width: 100%;
+    color: #ffffff;
+ 
+    margin-top: auto;
+    font-size: 55px;
+}
+
+/* Pause Modal Specific Styles */
+.pause-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--overlay-background-color);
+    display: none;
+}
+
+.pause-modal-content {
+    background-color: var(--pause-modal-background-color);
+    padding: 45px 40px;
+    border-radius: 20px;
+    border-width: 3px;
+    border-color: rgba(0, 0, 0, 0.3);
+    min-width: 420px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.pause-icon-button {
+    border-radius: 50%; /* Circular buttons */
+    border-width: 3px;
+    border-color: var(--pause-icon-button-border);
+    justify-content: center;
+    align-items: center;
+    transition-duration: 0.2s;
+    margin-left: 15px;
+    margin-right: 15px;
+    display: flex;
+}
+
+.pause-icon-history {
+    background-image: url("project:/Assets/Resources/history.svg");
+    scale:1.1;
+}
+
+.pause-icon-play {
+    background-image: url("project:/Assets/Resources/play.svg");
+}
+
+.pause-icon-option {
+    background-image: url("project:/Assets/Resources/option.svg");
+    scale:0.8;
+}
+
+.pause-icon-button Image {
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.5);
+    --unity-image-size: scale-to-fit;
+}
+
+.btn-lg {
+    padding: 30px;
+}
+
+.btn-lg Image {
+    width: 70px;
+    height: 70px;
+    margin-left:10px;
+}
+
+.btn-sm {
+    padding: 20px;
+}
+
+.btn-sm Image {
+    width: 40px;
+    height: 40px;
+}
+
+.bg-container {
+    position: absolute;
+    min-width: 1920px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg-text {
+    color: rgba(255, 255, 255, 0.23); /* Very faint so it looks like a watermark */
+    -unity-font-definition: url("/Assets/Fonts/Pacifico-Regular SDF.asset");
+    -unity-font-style: bold;
+    white-space: nowrap;
+    /* Optional: rotate it slightly for a stylized look */
+    rotate: 0.5deg;
+    padding:100px;
+    -unity-text-generator: advanced;
+    -unity-text-auto-size: best-fit 1px 1000px;
+}
+
+
+.my-custom-wave {
+    width: 100%;
+    height: 10%;
+    --line-thickness: 5;
+    --wave-height: 6;
+    color: var(--grid-tile-color);
+    opacity: 0.43;
+}

@@ -1,0 +1,84 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/USS/Base.uss?fileID=7433441132597879392&amp;guid=10351e0f039201a4a8d0a02f8f0b824b&amp;type=3#Base"/>
+    <Style src="project://database/Assets/UI%20Toolkit/USS/ThemeDefault.uss?fileID=7433441132597879392&amp;guid=056ce409e990e36499fe8f67ba1b2318&amp;type=3#ThemeDefault"/>
+    <ui:VisualElement name="MainContainer">
+        <ui:VisualElement name="Game" class="game-square">
+            <ui:VisualElement name="TopBar">
+                <ui:VisualElement name="ButtonBar">
+                    <MyGame.UI.GameButton name="NewGameButton">
+                        <ui:Label text="new game"/>
+                    </MyGame.UI.GameButton>
+                </ui:VisualElement>
+                <ui:VisualElement name="ScoreBar">
+                    <ui:VisualElement name="Title">
+                        <ui:Label text="TIME" name="Times" class="title"/>
+                        <ui:Label text="MOVES" name="Moves" class="value"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Value">
+                        <ui:Label text="0s" name="Times" class="title"/>
+                        <ui:Label text="0" name="Moves" class="value"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Grid"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="WinModal" class="modal-overlay">
+            <ui:VisualElement name="content" class="modal-content">
+                <ui:VisualElement name="title" class="modal-title">
+                    <ui:Label text="Excellent!"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="stats" class="modal-stats-group">
+                    <ui:Label text="It took you"/>
+                    <ui:Label text="0 moves." name="moveslabel"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="button" class="button-wrapper">
+                    <MyGame.UI.GameButton>
+                        <ui:Label text="Play Again"/>
+                    </MyGame.UI.GameButton>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="PauseModal" class="pause-modal-overlay">
+            <ui:VisualElement name="content" class="pause-modal-content">
+            <MyGame.UI.GameButton name="history-btn" class="pause-icon-button btn-sm">
+                <ui:VisualElement class="icon-wrapper">
+                    <ui:Image name="history-icon" class="pause-icon-history"/>
+                </ui:VisualElement>            
+            </MyGame.UI.GameButton>
+            <MyGame.UI.GameButton name="play-btn" class="pause-icon-button btn-lg">
+                <ui:VisualElement class="icon-wrapper">
+                    <ui:Image name="play-icon" class="pause-icon-play"/>
+                </ui:VisualElement>
+            </MyGame.UI.GameButton>
+            <MyGame.UI.GameButton name="settings-btn" class="pause-icon-button btn-sm">
+            <ui:VisualElement class="icon-wrapper">
+                <ui:Image name="option-icon" class="pause-icon-option"/>
+            </ui:VisualElement>
+            </MyGame.UI.GameButton>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="bg-title" class="bg-container">
+            <ui:VisualElement name="label">
+                <ui:VisualElement name="title">
+                    <ui:Label text="15 Puzzle" name="bg-label" class="bg-text"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="bg-wavelines" class="bg-container">
+            <MyGame.UI.WaveLines class="my-custom-wave"/>
+            <MyGame.UI.WaveLines class="my-custom-wave"/>
+            <MyGame.UI.WaveLines class="my-custom-wave"/>
+            <MyGame.UI.WaveLines class="my-custom-wave"/>
+            <MyGame.UI.WaveLines class="my-custom-wave"/>
+            <MyGame.UI.WaveLines class="my-custom-wave"/>
+            <MyGame.UI.WaveLines class="my-custom-wave"/>
+            <MyGame.UI.WaveLines class="my-custom-wave"/>
+            <MyGame.UI.WaveLines class="my-custom-wave"/>
+            <MyGame.UI.WaveLines class="my-custom-wave"/>
+            <MyGame.UI.WaveLines class="my-custom-wave"/>
+            <MyGame.UI.WaveLines class="my-custom-wave"/>
+            <MyGame.UI.WaveLines class="my-custom-wave"/>
+            <MyGame.UI.WaveLines class="my-custom-wave"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

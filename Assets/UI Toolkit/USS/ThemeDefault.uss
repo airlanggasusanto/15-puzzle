@@ -1,0 +1,24 @@
+:root {
+    /* Main Theme Colors */
+    --background-color: #57407c;
+    --grid-tile-color: #3d2963;
+    --primary-font-color: rgba(255, 255, 255, 1);
+    --button-hover-color: #d3386a;
+    
+    /* Modal & Overlay */
+    --modal-text-color: #534648;
+    --modal-background-color: rgba(255, 255, 255, 1);
+    --overlay-background-color: rgba(0, 0, 0, 0.7);
+    --grid-overlay-background: rgba(65, 38, 103, 0.71); 
+
+    /* Pause Modal */
+    --pause-modal-background-color: rgba(192, 192, 192, 1);
+    --pause-icon-button-bg: #3d2963;
+    --pause-icon-button-border: rgba(0, 0, 0, 0.15);
+    --pause-button-background: #57407c;
+    
+    /* Button Variants */
+    --resume-button-color: #4CAF50; /* Green */
+    --restart-button-color: #FF9800; /* Orange */
+    --quit-button-color: #F44336; /* Red */
+}
